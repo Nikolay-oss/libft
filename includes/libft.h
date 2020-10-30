@@ -20,7 +20,6 @@ int		ft_toupper(int c);
 char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlen(const char *s);
 char	**ft_strsplit(char const *s, char c);
-char	*ft_strcpy(char *dest, const char *src);
 void	*memset(void *b, int c, size_t len);
 void	bzero(char *s, size_t n);
 void	*memcpy(void *restrict dst, const void *restrict src, size_t n);

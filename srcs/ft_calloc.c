@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dkenchur <dkenchur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/31 16:01:09 by dkenchur          #+#    #+#             */
-/*   Updated: 2020/11/01 13:50:57 by dkenchur         ###   ########.fr       */
+/*   Created: 2020/11/01 17:55:37 by dkenchur          #+#    #+#             */
+/*   Updated: 2020/11/01 18:20:41 by dkenchur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_isprint(int c)
+void	*ft_calloc(size_t count, size_t size)
 {
-	if (c >= 32 && c <= 126)
-		return (1);
-	else
-		return (0);
+	void	*obj;
+
+	obj = malloc(count * size);
+	if (!obj)
+		return (obj);
+	ft_bzero(obj, count * size);
+	return (obj);
 }

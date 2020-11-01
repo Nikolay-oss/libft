@@ -1,21 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dkenchur <dkenchur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/31 16:01:09 by dkenchur          #+#    #+#             */
-/*   Updated: 2020/11/01 13:50:57 by dkenchur         ###   ########.fr       */
+/*   Created: 2020/11/01 13:19:12 by dkenchur          #+#    #+#             */
+/*   Updated: 2020/11/01 13:26:29 by dkenchur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_isprint(int c)
+char	*ft_strdup(const char *s1)
 {
-	if (c >= 32 && c <= 126)
-		return (1);
-	else
-		return (0);
+	size_t	size;
+	char	*str;
+	size_t	i;
+
+	size = ft_strlen(s1);
+	str = (char*)malloc(sizeof(char) * size + 1);
+	if (!str)
+		return (str);
+	i = 0;
+	while (i < size)
+	{
+		*(str + i) = *(s1 + i);
+		i++;
+	}
+	*(str + i) = '\0';
+	return (str);
 }

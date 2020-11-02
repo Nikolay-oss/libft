@@ -1,40 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dkenchur <dkenchur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/31 17:44:32 by dkenchur          #+#    #+#             */
-/*   Updated: 2020/11/02 18:38:59 by dkenchur         ###   ########.fr       */
+/*   Created: 2020/11/02 16:20:20 by dkenchur          #+#    #+#             */
+/*   Updated: 2020/11/02 18:33:20 by dkenchur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+char	*ft_substr(char const *s, unsigned int start,
+	size_t len)
 {
+	size_t	sub_size;
 	size_t	i;
 	size_t	j;
-	size_t	size;
-	size_t	dst_size;
+	char	*str;
 
-	size = 0;
-	dst_size = ft_strlen(dst);
+	if (!s)
+		return ((char*)s);
+	if (start >= ft_strlen(s))
+		return (ft_strdup(""));
+	sub_size = 0;
+	while (sub_size < len + 1 && *(s + sub_size))
+		sub_size++;
+	str = ft_calloc(sub_size, 1);
+	if (!str)
+		return (str);
 	i = 0;
-	while (*(dst + i))
-		i++;
-	if (dstsize > dst_size)
-		size = dstsize - i - 1;
-	else
-		return (ft_strlen(src) + dstsize);
-	j = 0;
-	while (j < size && *(src + j))
-	{
-		*(dst + i) = *(src + j);
-		i++;
-		j++;
-	}
-	*(dst + i) = '\0';
-	return (ft_strlen(src) + dst_size);
+	j = start;
+	while (j < start + len && *(s + j))
+		*(str + i++) = *(s + j++);
+	return (str);
 }

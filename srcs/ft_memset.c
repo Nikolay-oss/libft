@@ -6,7 +6,7 @@
 /*   By: dkenchur <dkenchur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 13:34:28 by dkenchur          #+#    #+#             */
-/*   Updated: 2020/10/31 12:03:27 by dkenchur         ###   ########.fr       */
+/*   Updated: 2020/11/02 18:38:12 by dkenchur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,6 @@ void	*ft_memset(void *b, int c, size_t len)
 	str = (unsigned char*)b;
 	i = 0;
 	while (i < len)
-	{
-		*(str + i) = c;
-		i++;
-	}
+		*(str + i++) = c;
 	return (str);
 }

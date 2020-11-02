@@ -1,40 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dkenchur <dkenchur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/31 17:44:32 by dkenchur          #+#    #+#             */
-/*   Updated: 2020/11/02 18:38:59 by dkenchur         ###   ########.fr       */
+/*   Created: 2020/11/02 14:07:44 by dkenchur          #+#    #+#             */
+/*   Updated: 2020/11/02 16:16:55 by dkenchur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+void	ft_putendl_fd(char *s, int fd)
 {
-	size_t	i;
-	size_t	j;
-	size_t	size;
-	size_t	dst_size;
-
-	size = 0;
-	dst_size = ft_strlen(dst);
-	i = 0;
-	while (*(dst + i))
-		i++;
-	if (dstsize > dst_size)
-		size = dstsize - i - 1;
-	else
-		return (ft_strlen(src) + dstsize);
-	j = 0;
-	while (j < size && *(src + j))
-	{
-		*(dst + i) = *(src + j);
-		i++;
-		j++;
-	}
-	*(dst + i) = '\0';
-	return (ft_strlen(src) + dst_size);
+	if (!s)
+		return ;
+	while (*s)
+		write(fd, s++, 1);
+	write(fd, "\n", 1);
 }

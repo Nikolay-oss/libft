@@ -1,40 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dkenchur <dkenchur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/31 17:44:32 by dkenchur          #+#    #+#             */
-/*   Updated: 2020/11/02 18:38:59 by dkenchur         ###   ########.fr       */
+/*   Created: 2020/11/02 20:48:22 by dkenchur          #+#    #+#             */
+/*   Updated: 2020/11/02 21:02:44 by dkenchur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	size_t	i;
-	size_t	j;
-	size_t	size;
-	size_t	dst_size;
+	unsigned int	i;
+	size_t			size;
+	char			*str;
 
-	size = 0;
-	dst_size = ft_strlen(dst);
+	if (!s)
+		return ((char*)s);
 	i = 0;
-	while (*(dst + i))
-		i++;
-	if (dstsize > dst_size)
-		size = dstsize - i - 1;
-	else
-		return (ft_strlen(src) + dstsize);
-	j = 0;
-	while (j < size && *(src + j))
+	size = ft_strlen(s);
+	if (!(str = ft_calloc(size + 1, 1)))
+		return (str);
+	while (*(s + i))
 	{
-		*(dst + i) = *(src + j);
+		*(str + i) = f(i, (char)*(s + i));
 		i++;
-		j++;
 	}
-	*(dst + i) = '\0';
-	return (ft_strlen(src) + dst_size);
+	return (str);
 }

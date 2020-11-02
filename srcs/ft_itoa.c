@@ -1,40 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dkenchur <dkenchur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/31 17:44:32 by dkenchur          #+#    #+#             */
-/*   Updated: 2020/11/02 18:38:59 by dkenchur         ###   ########.fr       */
+/*   Created: 2020/11/02 21:11:09 by dkenchur          #+#    #+#             */
+/*   Updated: 2020/11/02 22:26:28 by dkenchur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+char	*ft_itoa(int n)
 {
-	size_t	i;
-	size_t	j;
-	size_t	size;
-	size_t	dst_size;
-
-	size = 0;
-	dst_size = ft_strlen(dst);
-	i = 0;
-	while (*(dst + i))
-		i++;
-	if (dstsize > dst_size)
-		size = dstsize - i - 1;
-	else
-		return (ft_strlen(src) + dstsize);
-	j = 0;
-	while (j < size && *(src + j))
+	int	num;
+	char			*str;
+	unsigned int	size;
+	
+	size = n > 0 ? 1 : 2;
+	num = n;
+	while (n / 10)
 	{
-		*(dst + i) = *(src + j);
-		i++;
-		j++;
+		n /= 10;
+		size++;
 	}
-	*(dst + i) = '\0';
-	return (ft_strlen(src) + dst_size);
+	if (!(str = (char*)calloc(size + 1, 1)))
+		return (str);
+	if (num < 0)
+	{
+		num *= -1;
+		*(str + 0) = '-';
+	}
+	while (size > 0)
+	{
+		size--;
+		*(str + size) = (num % 10) + '0';
+		num /= 10;
+		if (*(str + size - 1) == '-')
+			break ;
+	}
+	return (str);
 }

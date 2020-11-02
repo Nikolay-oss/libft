@@ -6,7 +6,7 @@
 /*   By: dkenchur <dkenchur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 21:11:09 by dkenchur          #+#    #+#             */
-/*   Updated: 2020/11/02 22:26:28 by dkenchur         ###   ########.fr       */
+/*   Updated: 2020/11/03 00:13:18 by dkenchur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,29 @@
 
 char	*ft_itoa(int n)
 {
-	int	num;
+	long long int	num;
 	char			*str;
 	unsigned int	size;
 	
 	size = n > 0 ? 1 : 2;
+	if (n == 0)
+		size = 1;
 	num = n;
 	while (n / 10)
 	{
 		n /= 10;
 		size++;
 	}
-	if (!(str = (char*)calloc(size + 1, 1)))
+	if (!(str = (char*)ft_calloc(size + 1, 1)))
 		return (str);
 	if (num < 0)
 	{
 		num *= -1;
-		*(str + 0) = '-';
+		*str = '-';
 	}
 	while (size > 0)
 	{
-		size--;
-		*(str + size) = (num % 10) + '0';
+		*(str + --size) = (num % 10) + '0';
 		num /= 10;
 		if (*(str + size - 1) == '-')
 			break ;

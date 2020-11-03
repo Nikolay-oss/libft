@@ -27,7 +27,7 @@ static size_t	init_size(int n)
 
 char			*ft_itoa(int n)
 {
-	long long int	num;
+	long long int		num;
 	char			*str;
 	size_t			size;
 

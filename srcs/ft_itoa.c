@@ -6,7 +6,7 @@
 /*   By: dkenchur <dkenchur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 21:11:09 by dkenchur          #+#    #+#             */
-/*   Updated: 2020/11/03 00:13:18 by dkenchur         ###   ########.fr       */
+/*   Updated: 2020/11/03 23:41:01 by dkenchur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static size_t	init_size(int n)
 	size_t	size;
 
 	size = (n >= 0) ? 1 : 2;
-	while (n /10)
+	while (n / 10)
 	{
 		n /= 10;
 		size++;
@@ -27,7 +27,7 @@ static size_t	init_size(int n)
 
 char			*ft_itoa(int n)
 {
-	long long int		num;
+	long long int	num;
 	char			*str;
 	size_t			size;
 

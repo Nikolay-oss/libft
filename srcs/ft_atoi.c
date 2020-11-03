@@ -30,7 +30,7 @@ static int	ft_issign(const char c)
 
 int			ft_atoi(const char *str)
 {
-	long long int			res;
+	long long int	res;
 	int				i;
 	int				sign;
 

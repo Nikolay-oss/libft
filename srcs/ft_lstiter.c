@@ -6,7 +6,7 @@
 /*   By: dkenchur <dkenchur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 23:41:25 by dkenchur          #+#    #+#             */
-/*   Updated: 2020/11/03 23:41:26 by dkenchur         ###   ########.fr       */
+/*   Updated: 2020/11/04 05:07:42 by dkenchur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	if (!lst)
+	if (!lst && !f)
 		return ;
-	while (!lst)
+	while (lst)
 	{
-		f(lst);
+		f(lst->content);
 		lst = lst->next;
 	}
 }

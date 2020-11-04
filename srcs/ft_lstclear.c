@@ -6,7 +6,7 @@
 /*   By: dkenchur <dkenchur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 23:41:19 by dkenchur          #+#    #+#             */
-/*   Updated: 2020/11/03 23:41:20 by dkenchur         ###   ########.fr       */
+/*   Updated: 2020/11/04 05:07:16 by dkenchur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@ void	ft_lstclear(t_list **lst, void (*del)(void*))
 	t_list *node;
 
 	node = NULL;
-	while (!*lst)
+	if (!del)
+		return ;
+	while (*lst)
 	{
 		node = (*lst)->next;
-		del(node->content);
-		free(node->content);
+		del((*lst)->content);
+		free((*lst));
 		*lst = node;
 	}
 }

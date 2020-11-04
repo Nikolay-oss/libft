@@ -6,7 +6,7 @@
 /*   By: dkenchur <dkenchur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 13:01:35 by dkenchur          #+#    #+#             */
-/*   Updated: 2020/11/03 23:56:44 by dkenchur         ###   ########.fr       */
+/*   Updated: 2020/11/04 05:32:49 by dkenchur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int					ft_tolower(int c);
 int					ft_toupper(int c);
 char				*ft_strjoin(char const *s1, char const *s2);
 size_t				ft_strlen(const char *s);
-char				**ft_strsplit(char const *s, char c);
+char				**ft_split(char const *s, char c);
 void				*ft_memset(void *b, int c, size_t len);
 void				ft_bzero(void *s, size_t n);
 void				*ft_memcpy(void *dst, const void *src, size_t n);
@@ -65,4 +65,6 @@ void				ft_lstadd_back(t_list **lst, t_list *new);
 void				ft_lstdelone(t_list *lst, void (*del)(void *));
 void				ft_lstclear(t_list **lst, void (*del)(void *));
 void				ft_lstiter(t_list *lst, void (*f)(void *));
+t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
+						void (*del)(void *));
 #endif

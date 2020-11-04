@@ -34,13 +34,23 @@ SRC     = ${SRCDIR}ft_memset.c \
 		  ${SRCDIR}ft_substr.c	\
 		  ${SRCDIR}ft_strtrim.c	\
 		  ${SRCDIR}ft_strmapi.c	\
-		  ${SRCDIR}ft_itoa.c	
+		  ${SRCDIR}ft_itoa.c	\
+		  ${SRCDIR}ft_split.c	\
+		  ${SRCDIR}ft_lstnew.c	\
+		  ${SRCDIR}ft_lstadd_back.c	\
+		  ${SRCDIR}ft_lstadd_front.c \
+		  ${SRCDIR}ft_lstclear.c \
+		  ${SRCDIR}ft_lstdelone.c \
+		  ${SRCDIR}ft_lstiter.c	\
+		  ${SRCDIR}ft_lstlast.c	\
+		  ${SRCDIR}ft_lstsize.c	\
+		  ${SRCDIR}ft_lstmap.c	
 OBJ     = ${patsubst ${SRCDIR}%.c, ${OBJDIR}%.o, ${SRC}}
 CC      = gcc
 CFLAGS  = -Wall -Wextra -Werror
 ${OBJDIR}%.o: ${SRCDIR}%.c
 	${CC} ${CFLAGS} -I ${INC} -c $< -o $@
-${NAME}: ${OBJ}
+$(NAME): ${OBJ}
 	ar rc ${NAME} ${OBJ}
 	ranlib ${NAME}
 all:  ${NAME}

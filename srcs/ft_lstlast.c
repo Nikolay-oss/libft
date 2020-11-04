@@ -6,7 +6,7 @@
 /*   By: dkenchur <dkenchur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 23:41:30 by dkenchur          #+#    #+#             */
-/*   Updated: 2020/11/03 23:41:31 by dkenchur         ###   ########.fr       */
+/*   Updated: 2020/11/04 04:34:46 by dkenchur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_list	*ft_lstlast(t_list *lst)
 	if (!lst)
 		return (lst);
 	node = lst;
-	while (!node->next)
+	while (node->next)
 		node = node->next;
 	return (node);
 }

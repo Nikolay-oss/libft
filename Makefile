@@ -35,8 +35,9 @@ SRC     = ${SRCDIR}ft_memset.c \
 		  ${SRCDIR}ft_strtrim.c	\
 		  ${SRCDIR}ft_strmapi.c	\
 		  ${SRCDIR}ft_itoa.c	\
-		  ${SRCDIR}ft_split.c	\
-		  ${SRCDIR}ft_lstnew.c	\
+		  ${SRCDIR}ft_split.c
+
+SRC_BON		= ${SRCDIR}ft_lstnew.c	\
 		  ${SRCDIR}ft_lstadd_back.c	\
 		  ${SRCDIR}ft_lstadd_front.c \
 		  ${SRCDIR}ft_lstclear.c \
@@ -46,6 +47,7 @@ SRC     = ${SRCDIR}ft_memset.c \
 		  ${SRCDIR}ft_lstsize.c	\
 		  ${SRCDIR}ft_lstmap.c	
 OBJ     = ${patsubst ${SRCDIR}%.c, ${OBJDIR}%.o, ${SRC}}
+OBJ_BON	= ${patsubst ${SRCDIR}%.c, ${OBJDIR}%.o, ${SRC_BON}}
 CC      = gcc
 CFLAGS  = -Wall -Wextra -Werror
 ${OBJDIR}%.o: ${SRCDIR}%.c
@@ -53,9 +55,12 @@ ${OBJDIR}%.o: ${SRCDIR}%.c
 $(NAME): ${OBJ}
 	ar rc ${NAME} ${OBJ}
 	ranlib ${NAME}
-all:  ${NAME}
+all:	${NAME}
+bonus:	${OBJ} ${OBJ_BON}
+	ar rc ${NAME} ${OBJ} ${OBJ_BON}
+	ranlib ${NAME}
 clean:
-	rm -rf ${OBJ}
+	rm -rf ${OBJ} ${OBJ_BON}
 fclean: clean
 	rm -rf ${NAME}
 re: fclean all

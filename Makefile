@@ -59,24 +59,43 @@ CC      = gcc
 
 CFLAGS  = -Wall -Wextra -Werror
 
-${OBJDIR}%.o: ${SRCDIR}%.c $(INC)
-	${CC} ${CFLAGS} -I ${INC} -c $< -o $@
+GREEN	= \033[0;32m
 
-#$(OBJDIR):
-#	mkdir -p $(OBJDIR)
+RED	= \033[0;31m
 
-$(NAME): ${OBJ}
-	ar rcs ${NAME} $?
+RESET	= \033[0m
 
-all:	${NAME}
+all:	transition
+
+${OBJDIR}%.o: ${SRCDIR}%.c
+	@${CC} ${CFLAGS} -I ${INC} -c $< -o $@
+	@echo "$(GREEN)#$(RESET)\c"
+
+$(OBJDIR):
+	@mkdir -p $(OBJDIR)
+	@echo "$(GREEN)$(OBJDIR) was created$(RESET)"
+	@echo "\nCompilation. Please wait..."
+	@echo "$(GREEN)|$(RESET)\c"
+
+transition:	$(OBJDIR) $(NAME)
+
+$(NAME): $(OBJ)
+	@echo "$(GREEN)|$(RESET)"
+	@echo "Done!"
+	@ar rcs $(NAME) $?
+	@echo "$(NAME): $(GREEN)$(NAME) was created$(RESET)"
 
 bonus:
 	@make OBJ="$(OBJ) $(OBJ_BON)" all
 
 clean:
-	rm -rf ${OBJ} ${OBJ_BON}
+	@rm -rf $(OBJ) $(OBJ_BON) $(OBJDIR)
+	@echo "$(NAME): $(RED)$(OBJDIR) was deleted$(RESET)"
+	@echo "$(NAME): $(RED)object files were deleted$(RESET)"
+
 
 fclean: clean
-	rm -rf ${NAME}
+	@rm -rf $(NAME)
+	@echo "$(NAME): $(RED)$(NAME) was deleted$(RESET)"
 
 re: fclean all

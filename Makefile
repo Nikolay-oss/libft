@@ -1,7 +1,11 @@
 NAME    = libft.a
+
 SRCDIR  = srcs/
+
 INC		= includes/
+
 OBJDIR  = objs/
+
 SRC     = ${SRCDIR}ft_memset.c \
           ${SRCDIR}ft_bzero.c \
           ${SRCDIR}ft_memcpy.c \
@@ -46,21 +50,33 @@ SRC_BON		= ${SRCDIR}ft_lstnew.c	\
 		  ${SRCDIR}ft_lstlast.c	\
 		  ${SRCDIR}ft_lstsize.c	\
 		  ${SRCDIR}ft_lstmap.c	
+
 OBJ     = ${patsubst ${SRCDIR}%.c, ${OBJDIR}%.o, ${SRC}}
+
 OBJ_BON	= ${patsubst ${SRCDIR}%.c, ${OBJDIR}%.o, ${SRC_BON}}
+
 CC      = gcc
+
 CFLAGS  = -Wall -Wextra -Werror
-${OBJDIR}%.o: ${SRCDIR}%.c
+
+${OBJDIR}%.o: ${SRCDIR}%.c $(INC)
 	${CC} ${CFLAGS} -I ${INC} -c $< -o $@
+
+#$(OBJDIR):
+#	mkdir -p $(OBJDIR)
+
 $(NAME): ${OBJ}
-	ar rc ${NAME} ${OBJ}
-	ranlib ${NAME}
+	ar rcs ${NAME} $?
+
 all:	${NAME}
-bonus:	${OBJ} ${OBJ_BON}
-	ar rc ${NAME} ${OBJ} ${OBJ_BON}
-	ranlib ${NAME}
+
+bonus:
+	@make OBJ="$(OBJ) $(OBJ_BON)" all
+
 clean:
 	rm -rf ${OBJ} ${OBJ_BON}
+
 fclean: clean
 	rm -rf ${NAME}
+
 re: fclean all
